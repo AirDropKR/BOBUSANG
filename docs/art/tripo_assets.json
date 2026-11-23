@@ -1,0 +1,1844 @@
+{
+	"id": "tripo_asset_list",
+	"name_ko": "Tripo 모델 제작 목록",
+	"name_en": "Tripo Asset List",
+	"version": 1,
+	"how_to_use_ko": [
+		"prompt 를 Tripo 텍스트-투-3D 에 그대로 넣는다. 결과가 마음에 안 들면 이미지(콘셉트 그림)로 다시 생성해도 된다",
+		"face_limit, texture, pbr, rig, animations 는 Tripo 생성/리깅 옵션에 맞춰 고른다. Tripo 메뉴 이름과 다르면 가까운 옵션으로",
+		"받은 파일은 glb 로 내보내 assets/models/<asset_id>.glb 에 둔다 (폴더는 첫 모델이 들어올 때 만든다)",
+		"target_size_m 은 게임 속 실제 크기(미터). 크기와 원점(pivot)이 안 맞으면 Blender 나 Godot 가져오기 설정에서 맞춘다",
+		"상품 모델은 collider(충돌 모양)를 거의 꽉 채워야 한다. 모델이 충돌체보다 크게 튀어나오면 물건끼리 파고들어 보이고, 작으면 떠 보인다",
+		"충돌은 계속 data/items 의 단순 모양을 쓴다 (CLAUDE.md 원칙 3). 모델은 보이기만 한다"
+	],
+	"common": {
+		"style_ko": "조선 후기 장터, 무겁지 않고 정감 있는 로우폴리 스타일. 놓친 짐이 구르는 걸 보고 웃을 수 있는 톤",
+		"export_format": "glb",
+		"units": "meters",
+		"up_axis": "+Y",
+		"camera_view_ko": "게임은 옆에서 살짝 비스듬히 본다. 앞면(+Z 쪽, 카메라 쪽)과 옆모습 실루엣이 가장 중요",
+		"polygon_budget": {
+			"item": "1,500~3,000 삼각형",
+			"fx": "1,500 이하",
+			"character": "8,000~12,000 (배경 인물 6,000)",
+			"carrier_tool": "4,000 이하",
+			"environment": "4,000~8,000"
+		},
+		"texture_size": {
+			"item": 1024,
+			"character": 2048,
+			"environment": 2048
+		},
+		"rigging_ko": "사람은 Tripo 자동 리깅(사람형, biped), 호랑이와 소는 네발(quadruped). 새(닭, 오리, 까마귀)는 자동 리깅이 안 되면 리깅 없이 받는다. 지게, 상품, 도구, 배경은 리깅 없음",
+		"animation_ko": "걷기는 제자리 걷기(in-place)로. 몸 기울이기, 손 뻗어 잡기, 짐 흔들림은 게임 물리와 맞아야 해서 게임에서 절차적으로 만든다 (Tripo 애니메이션은 기본 동작용)",
+		"forbidden_ko": "글자, 로고, 실존 브랜드, 실존 인물을 닮은 얼굴 금지. 출처 불분명한 참고 이미지 사용 금지"
+	},
+	"assets": [
+		{
+			"asset_id": "model_item_brass_bowl",
+			"category": "item",
+			"game_ref": "item_brass_bowl",
+			"name_ko": "놋그릇",
+			"name_en": "Brass Bowls",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A stack of three nested Korean brass bowls (yugi / notgeureut), shiny golden brass, short and wide. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": true,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.34,
+				"y": 0.14,
+				"z": 0.34
+			},
+			"collider": {
+				"shape": "cylinder",
+				"radius": 0.17,
+				"height": 0.14,
+				"axis": "y"
+			},
+			"pivot": "center of the collider (bounding box center)",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "금속(PBR metallic). 납작한 원통 충돌체"
+		},
+		{
+			"asset_id": "model_item_firewood",
+			"category": "item",
+			"game_ref": "item_firewood",
+			"name_ko": "장작",
+			"name_en": "Firewood Bundle",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A bundle of split firewood logs tied with straw rope, lying horizontally, rectangular bundle shape. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.7,
+				"y": 0.22,
+				"z": 0.35
+			},
+			"collider": {
+				"shape": "box",
+				"size": [
+					0.7,
+					0.22,
+					0.35
+				]
+			},
+			"pivot": "center of the collider (bounding box center)",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "가로로 긴 장작 한 단"
+		},
+		{
+			"asset_id": "model_item_ginseng",
+			"category": "item",
+			"game_ref": "item_ginseng",
+			"name_ko": "인삼",
+			"name_en": "Ginseng",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A small wooden box of Korean ginseng roots, lid open showing three pale ginseng roots on red cloth. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.24,
+				"y": 0.08,
+				"z": 0.14
+			},
+			"collider": {
+				"shape": "box",
+				"size": [
+					0.24,
+					0.08,
+					0.14
+				]
+			},
+			"pivot": "center of the collider (bounding box center)",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "작고 납작한 상자. 작아도 알아보게 인삼 뿌리를 크게"
+		},
+		{
+			"asset_id": "model_item_onggi",
+			"category": "item",
+			"game_ref": "item_onggi",
+			"name_ko": "옹기",
+			"name_en": "Onggi Jar",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean onggi earthenware storage jar, dark brown glaze, wide round belly, short neck, upright. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.4,
+				"y": 0.42,
+				"z": 0.4
+			},
+			"collider": {
+				"shape": "cylinder",
+				"radius": 0.2,
+				"height": 0.42,
+				"axis": "y"
+			},
+			"pivot": "center of the collider (bounding box center)",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "세운 원통 충돌체 안에 들어가게. 배가 불러도 지름 0.4m 넘지 않게"
+		},
+		{
+			"asset_id": "model_item_rice_bale",
+			"category": "item",
+			"game_ref": "item_rice_bale",
+			"name_ko": "쌀섬",
+			"name_en": "Rice Bale",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A traditional Korean straw rice bale (seom), long cylinder with rounded ends lying horizontally, wrapped with straw rope bands. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 1.15,
+				"y": 0.4,
+				"z": 0.4
+			},
+			"collider": {
+				"shape": "capsule",
+				"radius": 0.2,
+				"height": 0.75,
+				"axis": "x"
+			},
+			"pivot": "center of the collider (bounding box center)",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "캡슐 충돌체: 가로(x)로 눕힌 긴 짚 섬. 양 끝이 둥글게"
+		},
+		{
+			"asset_id": "model_item_rice_wine_jar",
+			"category": "item",
+			"game_ref": "item_rice_wine_jar",
+			"name_ko": "술독",
+			"name_en": "Rice Wine Jar",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean rice wine jar (suldok), brown glazed earthenware, round barrel-like body lying on its side, mouth covered with cloth tied by string. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.4,
+				"y": 0.4,
+				"z": 0.36
+			},
+			"collider": {
+				"shape": "cylinder",
+				"radius": 0.2,
+				"height": 0.36,
+				"axis": "z"
+			},
+			"pivot": "center of the collider (bounding box center)",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "눕힌 술독: 옆(화면)에서 보면 원. 원통 축이 화면 안쪽(z)"
+		},
+		{
+			"asset_id": "model_item_salt_sack",
+			"category": "item",
+			"game_ref": "item_salt_sack",
+			"name_ko": "소금 가마니",
+			"name_en": "Salt Sack",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A woven rice-straw sack (gamani) tightly filled with coarse sea salt, rectangular block shape, rope tied around, a little white salt visible at the seam. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.55,
+				"y": 0.32,
+				"z": 0.4
+			},
+			"collider": {
+				"shape": "box",
+				"size": [
+					0.55,
+					0.32,
+					0.4
+				]
+			},
+			"pivot": "center of the collider (bounding box center)",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "가마니 모양이 상자 충돌체(가로로 긴 직육면체)를 거의 꽉 채우게"
+		},
+		{
+			"asset_id": "model_item_silk_roll",
+			"category": "item",
+			"game_ref": "item_silk_roll",
+			"name_ko": "비단 두루마리",
+			"name_en": "Silk Roll",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A rolled bolt of red-pink Korean silk fabric, cylinder roll with visible fabric spiral at the ends, tied with a thin cord. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.16,
+				"y": 0.16,
+				"z": 0.45
+			},
+			"collider": {
+				"shape": "cylinder",
+				"radius": 0.08,
+				"height": 0.45,
+				"axis": "z"
+			},
+			"pivot": "center of the collider (bounding box center)",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "눕힌 원통: 화면에서 끝 단면(소용돌이 무늬)이 보임"
+		},
+		{
+			"asset_id": "model_item_watermelon",
+			"category": "item",
+			"game_ref": "item_watermelon",
+			"name_ko": "수박",
+			"name_en": "Watermelon",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A round Korean watermelon with dark green stripes and a small stem. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.32,
+				"y": 0.32,
+				"z": 0.32
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.16
+			},
+			"pivot": "center of the collider (bounding box center)",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "공 충돌체. 줄무늬가 굴러갈 때 회전이 보이게 뚜렷하게"
+		},
+		{
+			"asset_id": "model_item_white_porcelain",
+			"category": "item",
+			"game_ref": "item_white_porcelain",
+			"name_ko": "백자",
+			"name_en": "White Porcelain",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Joseon white porcelain moon jar (baekja), milky white glaze, elegant round body, upright. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.36,
+				"y": 0.4,
+				"z": 0.36
+			},
+			"collider": {
+				"shape": "cylinder",
+				"radius": 0.18,
+				"height": 0.4,
+				"axis": "y"
+			},
+			"pivot": "center of the collider (bounding box center)",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "가장 중요한 상품. 깨끗하고 고급스러워 보이게. 세운 원통 충돌체 크기"
+		},
+		{
+			"asset_id": "model_item_celadon",
+			"category": "item",
+			"game_ref": "item_celadon",
+			"name_ko": "청자",
+			"name_en": "Celadon Vase",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Goryeo-style celadon vase, jade green glaze with inlaid crane pattern, upright. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.32,
+				"y": 0.42,
+				"z": 0.32
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "아직 데이터 없음. 백자보다 비싼 상품"
+		},
+		{
+			"asset_id": "model_item_pumpkin",
+			"category": "item",
+			"game_ref": "item_pumpkin",
+			"name_ko": "호박",
+			"name_en": "Pumpkin",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A ripe Korean pumpkin (neulgeun hobak), orange-yellow, wide and slightly flattened with ribs. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.36,
+				"y": 0.28,
+				"z": 0.36
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "굴러가는 상품. 충돌체는 구 예정"
+		},
+		{
+			"asset_id": "model_item_hanji",
+			"category": "item",
+			"game_ref": "item_hanji",
+			"name_ko": "한지",
+			"name_en": "Hanji Paper Bundle",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A stack of Korean mulberry paper (hanji) sheets folded and tied with straw string, cream color. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.4,
+				"y": 0.1,
+				"z": 0.3
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "가볍고 바람에 날아가는 상품. 납작한 상자"
+		},
+		{
+			"asset_id": "model_item_chicken",
+			"category": "item",
+			"game_ref": "item_chicken",
+			"name_ko": "닭",
+			"name_en": "Chicken",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean native chicken, brown and red feathers, standing, cute stylized. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": {
+					"type": "quadruped_or_custom",
+					"note_ko": "Tripo 자동 리깅이 새를 지원하지 않으면 리깅 없이 받고 게임에서 몸 전체를 흔드는 절차 애니메이션으로 처리"
+				},
+				"animations": [
+					"idle",
+					"flap",
+					"peck"
+				],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.3,
+				"y": 0.35,
+				"z": 0.2
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "살아있는 상품: 지게 위에서 스스로 움직임. 리깅 필요"
+		},
+		{
+			"asset_id": "model_item_duck",
+			"category": "item",
+			"game_ref": "item_duck",
+			"name_ko": "오리",
+			"name_en": "Duck",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A white farm duck, standing, cute stylized. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": {
+					"type": "quadruped_or_custom",
+					"note_ko": "닭과 같음"
+				},
+				"animations": [
+					"idle",
+					"flap"
+				],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.3,
+				"y": 0.32,
+				"z": 0.2
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "닭과 같은 방식"
+		},
+		{
+			"asset_id": "model_item_yeot",
+			"category": "item",
+			"game_ref": "item_yeot",
+			"name_ko": "엿",
+			"name_en": "Yeot Taffy Slab",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A slab of Korean amber taffy (yeot) on a wooden board, glossy brown, with a small metal scissors-shaped scraper. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.35,
+				"y": 0.08,
+				"z": 0.25
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "옆 물건에 달라붙는 특수 상품"
+		},
+		{
+			"asset_id": "model_item_jeotgal_jar",
+			"category": "item",
+			"game_ref": "item_jeotgal_jar",
+			"name_ko": "젓갈 항아리",
+			"name_en": "Salted Seafood Jar",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A small brown earthenware jar of Korean salted shrimp (jeotgal), lid tied with cloth. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.3,
+				"y": 0.35,
+				"z": 0.3
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "깨지면 주변 상품 값 하락"
+		},
+		{
+			"asset_id": "model_item_ice_block",
+			"category": "item",
+			"game_ref": "item_ice_block",
+			"name_ko": "얼음",
+			"name_en": "Ice Block",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A block of clear ice wrapped loosely in straw, slightly melting edges. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.35,
+				"y": 0.3,
+				"z": 0.3
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "시간이 지나면 녹음: 크기 3단계(큰, 중간, 작은) 모델로 받거나 게임에서 크기를 줄임"
+		},
+		{
+			"asset_id": "model_item_gunpowder",
+			"category": "item",
+			"game_ref": "item_gunpowder",
+			"name_ko": "화약",
+			"name_en": "Gunpowder Keg",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A small wooden keg of gunpowder with a red cloth warning tag and rope handle. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.3,
+				"y": 0.35,
+				"z": 0.3
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "세게 부딪히면 폭발. 위험해 보이게 빨간 천"
+		},
+		{
+			"asset_id": "model_item_charcoal",
+			"category": "item",
+			"game_ref": "item_charcoal",
+			"name_ko": "숯",
+			"name_en": "Charcoal Sack",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A straw sack overflowing with black charcoal pieces. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.5,
+				"y": 0.3,
+				"z": 0.35
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "무겁고 튼튼한 싼 상품"
+		},
+		{
+			"asset_id": "model_item_yugi_set",
+			"category": "item",
+			"game_ref": "item_yugi_set",
+			"name_ko": "유기 반상기",
+			"name_en": "Brass Tableware Set",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A set of shiny Korean brass tableware: bowls with lids and a spoon on a small tray. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": true,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.4,
+				"y": 0.18,
+				"z": 0.3
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "금속, 미끄러움"
+		},
+		{
+			"asset_id": "model_item_medicinal_herbs",
+			"category": "item",
+			"game_ref": "item_medicinal_herbs",
+			"name_ko": "약재",
+			"name_en": "Medicinal Herbs Bundle",
+			"milestone": "M3",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A paper-wrapped bundle of dried Korean medicinal herbs tied with string, roots and leaves peeking out. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.35,
+				"y": 0.18,
+				"z": 0.25
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "대구 특산"
+		},
+		{
+			"asset_id": "model_item_folding_fan",
+			"category": "item",
+			"game_ref": "item_folding_fan",
+			"name_ko": "부채",
+			"name_en": "Folding Fan Bundle",
+			"milestone": "M3",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A bundle of Korean hanji folding fans tied together, ink-painted bamboo pattern. stylized low-poly 3D game asset, late Joseon dynasty Korea (18th-19th century) market goods, warm earthy hand-painted colors, soft simple shading, clean readable silhouette, single object centered, no ground, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 3000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.35,
+				"y": 0.1,
+				"z": 0.15
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "전주 특산"
+		},
+		{
+			"asset_id": "model_carrier_jige",
+			"category": "carrier",
+			"game_ref": "carrier_jige",
+			"name_ko": "지게",
+			"name_en": "Jige A-frame Carrier",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A traditional Korean wooden A-frame back carrier (jige), two long wooden poles with crossbars, straw shoulder straps, a flat wooden load shelf sticking out at hip height, empty. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.9,
+				"y": 1.3,
+				"z": 0.6
+			},
+			"collider": null,
+			"pivot": "see notes_ko",
+			"facing": "side view, the side that touches the porter's back faces +X",
+			"notes_ko": "충돌은 data/carriers/carrier_jige.json 의 상자 3개(받침, 등태, 바깥 테두리)를 그대로 쓴다. 보이는 받침 윗면이 shelf_height 0.72m, 받침 너비 약 0.78m 에 맞게. 원점은 받침 윗면 가운데로 옮겨서 가져오기"
+		},
+		{
+			"asset_id": "model_carrier_big_jige",
+			"category": "carrier",
+			"game_ref": "carrier_big_jige",
+			"name_ko": "큰 지게",
+			"name_en": "Large Jige",
+			"milestone": "M5",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A large heavy-duty Korean A-frame back carrier (jige) with a wider load shelf and thicker poles, empty. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 1.2,
+				"y": 1.4,
+				"z": 0.6
+			},
+			"collider": null,
+			"pivot": "see notes_ko",
+			"facing": "side view, the side that touches the porter's back faces +X",
+			"notes_ko": "영구 해금 운반 도구. 받침이 더 넓게"
+		},
+		{
+			"asset_id": "model_carrier_bundle",
+			"category": "carrier",
+			"game_ref": "carrier_bundle",
+			"name_ko": "봇짐",
+			"name_en": "Cloth Bundle Pack",
+			"milestone": "M5",
+			"priority": 3,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean cloth bundle backpack (botjim), indigo wrapping cloth tied in a knot, carried with a shoulder strap, empty-looking soft shape. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.6,
+				"y": 0.6,
+				"z": 0.4
+			},
+			"collider": null,
+			"pivot": "see notes_ko",
+			"facing": "side view, the side that touches the porter's back faces +X",
+			"notes_ko": "가벼운 고가품 전용"
+		},
+		{
+			"asset_id": "model_carrier_handcart",
+			"category": "carrier",
+			"game_ref": "carrier_handcart",
+			"name_ko": "손수레",
+			"name_en": "Wooden Handcart",
+			"milestone": "M5",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A simple Korean two-wheeled wooden handcart with long handles and a flat bed with low side rails, empty. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 2.0,
+				"y": 0.9,
+				"z": 1.0
+			},
+			"collider": null,
+			"pivot": "see notes_ko",
+			"facing": "side view, the side that touches the porter's back faces +X",
+			"notes_ko": "첫 버전 운반 도구 2종 중 하나. 바퀴는 따로 분리된 메쉬(돌림)"
+		},
+		{
+			"asset_id": "model_carrier_oxcart",
+			"category": "carrier",
+			"game_ref": "carrier_oxcart",
+			"name_ko": "소달구지",
+			"name_en": "Ox Cart",
+			"milestone": "M5",
+			"priority": 3,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean wooden ox cart with two large spoked wheels and a wide flat bed with side rails, no ox, empty. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 2.8,
+				"y": 1.5,
+				"z": 1.4
+			},
+			"collider": null,
+			"pivot": "see notes_ko",
+			"facing": "side view, the side that touches the porter's back faces +X",
+			"notes_ko": "소는 char_ox 로 따로"
+		},
+		{
+			"asset_id": "model_tool_straw_rope",
+			"category": "tool",
+			"game_ref": "tool_straw_rope",
+			"name_ko": "새끼줄",
+			"name_en": "Straw Rope Coil",
+			"milestone": "M4",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A coiled Korean straw rope (saekkijul), twisted rice straw. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.3,
+				"y": 0.1,
+				"z": 0.3
+			},
+			"collider": null,
+			"pivot": "see notes_ko",
+			"facing": "side view, the side that touches the porter's back faces +X",
+			"notes_ko": "도구 버튼 아이콘 겸 고정 연출. 짐을 묶는 줄은 게임에서 선으로 그림"
+		},
+		{
+			"asset_id": "model_tool_bojagi",
+			"category": "tool",
+			"game_ref": "tool_bojagi",
+			"name_ko": "보자기",
+			"name_en": "Bojagi Wrapping Cloth",
+			"milestone": "M4",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A colorful Korean patchwork wrapping cloth (bojagi) tied in a knot around a bundle. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.4,
+				"y": 0.25,
+				"z": 0.4
+			},
+			"collider": null,
+			"pivot": "see notes_ko",
+			"facing": "side view, the side that touches the porter's back faces +X",
+			"notes_ko": "작은 물건 여러 개를 하나로 묶는 도구"
+		},
+		{
+			"asset_id": "model_tool_straw_bundle",
+			"category": "tool",
+			"game_ref": "tool_straw_bundle",
+			"name_ko": "짚단",
+			"name_en": "Straw Bundle",
+			"milestone": "M4",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A tied bundle of dry rice straw (jipdan). stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.5,
+				"y": 0.2,
+				"z": 0.3
+			},
+			"collider": null,
+			"pivot": "see notes_ko",
+			"facing": "side view, the side that touches the porter's back faces +X",
+			"notes_ko": "충격 완화 도구. 지게 받침 위에 깔림"
+		},
+		{
+			"asset_id": "model_tool_divider",
+			"category": "tool",
+			"game_ref": "tool_divider",
+			"name_ko": "칸막이 나무",
+			"name_en": "Wooden Divider Board",
+			"milestone": "M4",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A small upright wooden plank divider with two pegs at the bottom. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.05,
+				"y": 0.3,
+				"z": 0.4
+			},
+			"collider": null,
+			"pivot": "see notes_ko",
+			"facing": "side view, the side that touches the porter's back faces +X",
+			"notes_ko": "지게 칸막이. 충돌은 상자"
+		},
+		{
+			"asset_id": "model_tool_hat_string",
+			"category": "tool",
+			"game_ref": "tool_hat_string",
+			"name_ko": "갓끈",
+			"name_en": "Hat Cord",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A loop of beaded Korean hat cord (gatkkeun), dark amber beads on a string. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.25,
+				"y": 0.05,
+				"z": 0.15
+			},
+			"collider": null,
+			"pivot": "see notes_ko",
+			"facing": "side view, the side that touches the porter's back faces +X",
+			"notes_ko": "가벼운 물건 고정"
+		},
+		{
+			"asset_id": "model_char_porter",
+			"category": "character",
+			"game_ref": null,
+			"name_ko": "주인공 보부상",
+			"name_en": "Young Peddler (Bobusang)",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A young Korean traveling peddler (bobusang), plain white hanbok jacket and baggy trousers, straw sandals, cotton leg wraps, a wide flat straw hat (paeraengi) with a small cotton tuft, cloth belt, friendly face, empty hands. stylized low-poly 3D game character, late Joseon dynasty Korea, friendly cartoon proportions (slightly big head), warm earthy colors, T-pose, full body, no background",
+				"negative_prompt": "weapon unless described, modern clothes, Japanese or Chinese costume, text, logo, ground plane, A-pose sitting",
+				"face_limit": 12000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": {
+					"type": "biped"
+				},
+				"animations": [
+					"idle",
+					"walk",
+					"walk_slow",
+					"stumble",
+					"reach_up_one_arm",
+					"cheer",
+					"sad"
+				],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.6,
+				"y": 1.7,
+				"z": 0.5
+			},
+			"collider": null,
+			"pivot": "feet center on the ground",
+			"facing": "side view walking toward +X (screen right); Tripo 결과가 다른 방향이면 Godot에서 회전",
+			"notes_ko": "지게는 따로 만든 모델을 등에 붙인다 (캐릭터 모델에 지게를 포함하지 않음). 몸 기울이기와 손 뻗기는 게임에서 뼈를 직접 돌려(절차 애니메이션) 만들 예정이라 표준 휴머노이드 뼈 구조면 충분. 걷기는 제자리 걷기(in-place)로"
+		},
+		{
+			"asset_id": "model_char_gaekju",
+			"category": "character",
+			"game_ref": null,
+			"name_ko": "객주",
+			"name_en": "Gaekju (Merchant Lender)",
+			"milestone": "M3",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A plump middle-aged Korean merchant lender (gaekju), dark blue silk outer robe, black horsehair gat hat, holding an abacus, shrewd but kind smile. stylized low-poly 3D game character, late Joseon dynasty Korea, friendly cartoon proportions (slightly big head), warm earthy colors, T-pose, full body, no background",
+				"negative_prompt": "weapon unless described, modern clothes, Japanese or Chinese costume, text, logo, ground plane, A-pose sitting",
+				"face_limit": 12000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": {
+					"type": "biped"
+				},
+				"animations": [
+					"idle",
+					"talk",
+					"count_money",
+					"nod"
+				],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.7,
+				"y": 1.7,
+				"z": 0.5
+			},
+			"collider": null,
+			"pivot": "feet center on the ground",
+			"facing": "side view walking toward +X (screen right); Tripo 결과가 다른 방향이면 Godot에서 회전",
+			"notes_ko": "빚 정산 화면, 의뢰 화면. 실존 인물을 닮지 않게"
+		},
+		{
+			"asset_id": "model_char_bandit",
+			"category": "character",
+			"game_ref": null,
+			"name_ko": "산적",
+			"name_en": "Mountain Bandit",
+			"milestone": "M4",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A comical Korean mountain bandit, messy topknot, torn grey hanbok, red headband, wooden club, exaggerated scowl but funny. stylized low-poly 3D game character, late Joseon dynasty Korea, friendly cartoon proportions (slightly big head), warm earthy colors, T-pose, full body, no background",
+				"negative_prompt": "weapon unless described, modern clothes, Japanese or Chinese costume, text, logo, ground plane, A-pose sitting",
+				"face_limit": 12000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": {
+					"type": "biped"
+				},
+				"animations": [
+					"idle",
+					"threaten",
+					"catch_item",
+					"angry",
+					"walk"
+				],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.7,
+				"y": 1.75,
+				"z": 0.5
+			},
+			"collider": null,
+			"pivot": "feet center on the ground",
+			"facing": "side view walking toward +X (screen right); Tripo 결과가 다른 방향이면 Godot에서 회전",
+			"notes_ko": "짐을 던져주는 사건. 무섭기보다 웃기게"
+		},
+		{
+			"asset_id": "model_char_tiger",
+			"category": "character",
+			"game_ref": null,
+			"name_ko": "호랑이",
+			"name_en": "Tiger",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A big Korean tiger in folk-painting (minhwa) style, orange with black stripes, round friendly-scary face. stylized low-poly 3D game character, late Joseon dynasty Korea, friendly cartoon proportions (slightly big head), warm earthy colors, T-pose, full body, no background",
+				"negative_prompt": "weapon unless described, modern clothes, Japanese or Chinese costume, text, logo, ground plane, A-pose sitting",
+				"face_limit": 10000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": {
+					"type": "quadruped"
+				},
+				"animations": [
+					"idle",
+					"walk",
+					"roar",
+					"run"
+				],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 1.8,
+				"y": 1.0,
+				"z": 0.5
+			},
+			"collider": null,
+			"pivot": "feet center on the ground",
+			"facing": "side view walking toward +X (screen right); Tripo 결과가 다른 방향이면 Godot에서 회전",
+			"notes_ko": "민화 호랑이처럼 둥글고 익살스럽게. 고갯길 사건"
+		},
+		{
+			"asset_id": "model_char_crow",
+			"category": "character",
+			"game_ref": null,
+			"name_ko": "까마귀",
+			"name_en": "Crow",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A black crow with a slightly mischievous look, wings folded. stylized low-poly 3D game character, late Joseon dynasty Korea, friendly cartoon proportions (slightly big head), warm earthy colors, T-pose, full body, no background",
+				"negative_prompt": "weapon unless described, modern clothes, Japanese or Chinese costume, text, logo, ground plane, A-pose sitting",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": {
+					"type": "none",
+					"note_ko": "새 리깅을 자동으로 못 하면 날개 펼친 모델과 접은 모델 두 개를 받아 바꿔 쓴다"
+				},
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.4,
+				"y": 0.3,
+				"z": 0.2
+			},
+			"collider": null,
+			"pivot": "feet center on the ground",
+			"facing": "side view walking toward +X (screen right); Tripo 결과가 다른 방향이면 Godot에서 회전",
+			"notes_ko": "가벼운 물건을 채감. 날개 펼친 버전도 따로 생성"
+		},
+		{
+			"asset_id": "model_char_villager_male",
+			"category": "character",
+			"game_ref": null,
+			"name_ko": "장터 사람(남)",
+			"name_en": "Market Villager (Male)",
+			"milestone": "M6",
+			"priority": 3,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean villager man in plain beige hanbok, topknot with headband, holding nothing. stylized low-poly 3D game character, late Joseon dynasty Korea, friendly cartoon proportions (slightly big head), warm earthy colors, T-pose, full body, no background",
+				"negative_prompt": "weapon unless described, modern clothes, Japanese or Chinese costume, text, logo, ground plane, A-pose sitting",
+				"face_limit": 6000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": {
+					"type": "biped"
+				},
+				"animations": [
+					"idle",
+					"talk",
+					"walk"
+				],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.6,
+				"y": 1.65,
+				"z": 0.5
+			},
+			"collider": null,
+			"pivot": "feet center on the ground",
+			"facing": "side view walking toward +X (screen right); Tripo 결과가 다른 방향이면 Godot에서 회전",
+			"notes_ko": "장터 배경 손님. 색만 바꿔 여러 명으로"
+		},
+		{
+			"asset_id": "model_char_villager_female",
+			"category": "character",
+			"game_ref": null,
+			"name_ko": "장터 사람(여)",
+			"name_en": "Market Villager (Female)",
+			"milestone": "M6",
+			"priority": 3,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean village woman in a light pink jeogori and long navy chima skirt, hair in a low bun. stylized low-poly 3D game character, late Joseon dynasty Korea, friendly cartoon proportions (slightly big head), warm earthy colors, T-pose, full body, no background",
+				"negative_prompt": "weapon unless described, modern clothes, Japanese or Chinese costume, text, logo, ground plane, A-pose sitting",
+				"face_limit": 6000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": {
+					"type": "biped"
+				},
+				"animations": [
+					"idle",
+					"talk",
+					"walk"
+				],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.6,
+				"y": 1.6,
+				"z": 0.5
+			},
+			"collider": null,
+			"pivot": "feet center on the ground",
+			"facing": "side view walking toward +X (screen right); Tripo 결과가 다른 방향이면 Godot에서 회전",
+			"notes_ko": "장터 배경 손님"
+		},
+		{
+			"asset_id": "model_char_ox",
+			"category": "character",
+			"game_ref": null,
+			"name_ko": "소",
+			"name_en": "Korean Ox",
+			"milestone": "M5",
+			"priority": 3,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A brown Korean native ox (hanu), gentle face, short horns, harness on shoulders. stylized low-poly 3D game character, late Joseon dynasty Korea, friendly cartoon proportions (slightly big head), warm earthy colors, T-pose, full body, no background",
+				"negative_prompt": "weapon unless described, modern clothes, Japanese or Chinese costume, text, logo, ground plane, A-pose sitting",
+				"face_limit": 10000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": {
+					"type": "quadruped"
+				},
+				"animations": [
+					"idle",
+					"walk"
+				],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 2.0,
+				"y": 1.4,
+				"z": 0.7
+			},
+			"collider": null,
+			"pivot": "feet center on the ground",
+			"facing": "side view walking toward +X (screen right); Tripo 결과가 다른 방향이면 Godot에서 회전",
+			"notes_ko": "소달구지를 끄는 소"
+		},
+		{
+			"asset_id": "model_env_market_stall",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "장터 좌판",
+			"name_en": "Market Stall",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean market stall: wooden two-level display shelf under a cloth awning on two poles, empty shelves. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 5000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 4.0,
+				"y": 2.8,
+				"z": 1.6
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "지금 도형 좌판(StackingShelf)을 대신. 충돌은 지금 상자 그대로라 선반 높이 0.72m, 위 칸 1.47m 에 맞추기"
+		},
+		{
+			"asset_id": "model_env_jangseung",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "장승 이정표",
+			"name_en": "Jangseung Signpost",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A pair of carved wooden Korean village guardian posts (jangseung) with funny faces. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 5000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.8,
+				"y": 2.2,
+				"z": 0.4
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "구간 시작 표지판 대신. 글자는 게임에서 따로 띄움 (모델에 글자 넣지 않기)"
+		},
+		{
+			"asset_id": "model_env_rock_small",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "돌부리",
+			"name_en": "Small Rocks",
+			"milestone": "M6",
+			"priority": 1,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A cluster of small grey rocks half buried, low and flat. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 1500,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.5,
+				"y": 0.15,
+				"z": 0.5
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "돌길 구간 장식. 충돌은 길 데이터가 담당 (장식만)"
+		},
+		{
+			"asset_id": "model_env_pine_tree",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "소나무",
+			"name_en": "Korean Red Pine",
+			"milestone": "M6",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A twisted Korean red pine tree (sonamu) with layered flat foliage. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 4000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 3.0,
+				"y": 5.0,
+				"z": 3.0
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "길 뒤 배경"
+		},
+		{
+			"asset_id": "model_env_thatched_house",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "초가집",
+			"name_en": "Thatched House",
+			"milestone": "M6",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A small Korean thatched-roof house (chogajip) with mud walls and a wooden porch. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 6000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 6.0,
+				"y": 4.0,
+				"z": 4.0
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "장터와 마을 배경"
+		},
+		{
+			"asset_id": "model_env_tiled_house",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "기와집",
+			"name_en": "Tiled-roof House",
+			"milestone": "M6",
+			"priority": 3,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean tiled-roof house (giwajip) with curved roof eaves. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 8000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 8.0,
+				"y": 5.0,
+				"z": 5.0
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "큰 장터(마지막 장) 배경"
+		},
+		{
+			"asset_id": "model_env_jumak",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "주막",
+			"name_en": "Roadside Tavern",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean roadside tavern (jumak) with a thatched roof, a wooden bench outside and a hanging lantern. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 7000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 7.0,
+				"y": 4.0,
+				"z": 4.0
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "주막 사건"
+		},
+		{
+			"asset_id": "model_env_stepping_stones",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "징검다리",
+			"name_en": "Stepping Stones",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A row of flat river stepping stones (jinggeomdari) in shallow water. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 5000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 4.0,
+				"y": 0.3,
+				"z": 1.0
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "징검다리 길 구간. 물은 게임 셰이더로"
+		},
+		{
+			"asset_id": "model_env_ferry_boat",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "나룻배",
+			"name_en": "Ferry Boat",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A small flat wooden Korean river ferry boat with a long pole. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 5000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 5.0,
+				"y": 0.8,
+				"z": 1.8
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "나룻배 길 구간"
+		},
+		{
+			"asset_id": "model_env_seonangdang",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "서낭당 돌무더기",
+			"name_en": "Seonangdang Cairn",
+			"milestone": "M6",
+			"priority": 3,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A roadside stone cairn shrine with colorful cloth strips tied to a small tree. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 5000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 1.5,
+				"y": 2.0,
+				"z": 1.5
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "고갯마루 장식"
+		},
+		{
+			"asset_id": "model_env_lost_bundle",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "남의 봇짐",
+			"name_en": "Dropped Bundle",
+			"milestone": "M4",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A dropped traveler's cloth bundle on the road, slightly untied. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 2000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.5,
+				"y": 0.3,
+				"z": 0.4
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "길가에 떨어진 남의 봇짐 사건"
+		},
+		{
+			"asset_id": "model_env_gaekju_house",
+			"category": "environment",
+			"game_ref": null,
+			"name_ko": "객주집",
+			"name_en": "Gaekju Inn",
+			"milestone": "M3",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A Korean merchant inn (gaekju) with a tiled roof, open front room with storage jars and a counter. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 8000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 8.0,
+				"y": 5.0,
+				"z": 5.0
+			},
+			"collider": null,
+			"pivot": "bottom center",
+			"facing": "front faces +Z (camera)",
+			"notes_ko": "마지막 정산 장소"
+		},
+		{
+			"asset_id": "model_fx_shards_ceramic",
+			"category": "fx",
+			"game_ref": null,
+			"name_ko": "도자기 조각",
+			"name_en": "Ceramic Shards",
+			"milestone": "M6",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "Five broken white porcelain shards, curved pieces. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 1500,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.3,
+				"y": 0.1,
+				"z": 0.3
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "깨짐 연출용 조각. 조각마다 따로 분리된 메쉬면 좋음 (Tripo 부품 분리 기능 사용 가능하면 사용)"
+		},
+		{
+			"asset_id": "model_fx_shards_onggi",
+			"category": "fx",
+			"game_ref": null,
+			"name_ko": "옹기 조각",
+			"name_en": "Onggi Shards",
+			"milestone": "M6",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "Five broken dark brown earthenware shards, thick curved pieces. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 1500,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.35,
+				"y": 0.12,
+				"z": 0.35
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "위와 같음"
+		},
+		{
+			"asset_id": "model_fx_watermelon_split",
+			"category": "fx",
+			"game_ref": null,
+			"name_ko": "깨진 수박",
+			"name_en": "Smashed Watermelon",
+			"milestone": "M6",
+			"priority": 2,
+			"tripo": {
+				"mode": "text_to_model",
+				"prompt": "A watermelon split into chunks showing red flesh and black seeds. stylized low-poly 3D environment prop, late Joseon dynasty Korea countryside, warm earthy hand-painted colors, soft simple shading, no ground plane, no background",
+				"negative_prompt": "text, letters, logo, watermark, modern objects, plastic, photorealistic noise, ground plane, base, pedestal, multiple objects",
+				"face_limit": 2000,
+				"quad": false,
+				"texture": true,
+				"pbr": false,
+				"rig": null,
+				"animations": [],
+				"export": "glb"
+			},
+			"target_size_m": {
+				"x": 0.35,
+				"y": 0.2,
+				"z": 0.35
+			},
+			"collider": null,
+			"pivot": "bounding box center",
+			"facing": "front view = game screen (+Z toward camera)",
+			"notes_ko": "웃음 포인트 연출용"
+		}
+	],
+	"not_for_tripo_ko": [
+		"UI 아이콘(상품, 도구, 엽전): 2D 이미지 작업 (Tripo 아님). 필요하면 모델을 렌더해서 만들 수 있음",
+		"길 땅 모양: 게임이 길 데이터로 직접 만든다. 대신 흙, 돌, 풀 바닥 질감(텍스처) 이미지가 필요",
+		"하늘, 먼 산 배경: 2D 그림 또는 게임 셰이더",
+		"효과(흙먼지, 물방울, 쨍그랑 글자): 게임 파티클과 글자",
+		"음악, 효과음 (M6 국악풍)"
+	]
+}
