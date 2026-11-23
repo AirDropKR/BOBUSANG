@@ -1,0 +1,10 @@
+{
+	"id": "economy_default",
+	"name_ko": "기본 경제 설정",
+	"name_en": "Default Economy",
+	"starting_money": 300,
+	"default_sell_multiplier": 0.9,
+	"min_condition_factor": 0.3,
+	"default_stock": 1,
+	"note_ko": "돈 단위는 냥(엽전)으로 단순화했다. 상태 배율: 내구도가 0에 가까우면 값이 기본의 30%까지 떨어진다."
+}

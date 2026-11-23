@@ -12,6 +12,10 @@ const CARRIER_REQUIRED_NUMBERS: Array[String] = [
 	"rim_thickness", "pivot_height", "load_zone_height", "load_zone_margin", "friction", "bounce",
 ]
 const MAX_FRICTION: float = 2.0
+const ECONOMY_PATH: String = "economy.json"
+## 오일장 날짜는 열흘 주기 안의 날 (1~10)
+const MARKET_DAY_MIN: int = 1
+const MARKET_DAY_MAX: int = 10
 
 
 static func validate_all(root: String = DATA_ROOT) -> Array[String]:
@@ -33,6 +37,13 @@ static func validate_all(root: String = DATA_ROOT) -> Array[String]:
 		if path == segment_path:
 			continue
 		errors.append_array(_with_path(path, validate_road(_load(path, errors), segment_ids), seen))
+	var item_ids: Array = JsonData.load_by_id(root.path_join("items")).keys()
+	var road_ids: Array = RoadCatalog.load_roads(root.path_join("roads")).keys()
+	var market_ids: Array = JsonData.load_by_id(root.path_join("markets")).keys()
+	for path: String in JsonData.list_json_files(root.path_join("markets")):
+		errors.append_array(_with_path(path, validate_market(_load(path, errors), item_ids, road_ids, market_ids), seen))
+	var economy_path: String = root.path_join(ECONOMY_PATH)
+	errors.append_array(_prefix(economy_path, validate_economy(_load(economy_path, errors))))
 	errors.append_array(validate_locales(root.path_join("locale")))
 	var params_path: String = root.path_join("tuning/params.json")
 	errors.append_array(_prefix(params_path, validate_tuning_params(_load(params_path, errors))))
@@ -152,6 +163,74 @@ static func validate_road(d: Variant, segment_ids: Array) -> Array[String]:
 			e.append("모르는 구간 종류: %s" % str(seg))
 	if (d as Dictionary).has("seed") and not _is_number(d["seed"]):
 		e.append("seed 는 숫자")
+	return e
+
+
+static func validate_market(d: Variant, item_ids: Array, road_ids: Array, market_ids: Array) -> Array[String]:
+	var e: Array[String] = []
+	if not _check_common(d, "market_", e):
+		return e
+	var market: Dictionary = d
+	var days: Variant = market.get("market_days")
+	if typeof(days) != TYPE_ARRAY or (days as Array).is_empty():
+		e.append("market_days 는 비어 있지 않은 배열")
+	else:
+		for day: Variant in days:
+			if not _is_number(day) or int(day) < MARKET_DAY_MIN or int(day) > MARKET_DAY_MAX:
+				e.append("market_days 는 %d~%d: %s" % [MARKET_DAY_MIN, MARKET_DAY_MAX, str(day)])
+	for field: String in ["sells", "buys"]:
+		var table: Variant = market.get(field)
+		if typeof(table) != TYPE_DICTIONARY:
+			e.append("%s 객체 필요" % field)
+			continue
+		for item_id: Variant in table.keys():
+			if not item_ids.has(item_id):
+				e.append("%s: 없는 상품 %s" % [field, item_id])
+			if not _is_number(table[item_id]) or float(table[item_id]) <= 0.0:
+				e.append("%s.%s 배율은 양수" % [field, item_id])
+	var stock: Variant = market.get("stock", {})
+	if typeof(stock) != TYPE_DICTIONARY:
+		e.append("stock 은 객체")
+	else:
+		for item_id: Variant in stock.keys():
+			if typeof(market.get("sells")) == TYPE_DICTIONARY and not (market["sells"] as Dictionary).has(item_id):
+				e.append("stock.%s: sells 에 없는 상품" % item_id)
+			if not _is_number(stock[item_id]) or int(stock[item_id]) < 1:
+				e.append("stock.%s 는 1 이상 정수" % item_id)
+	var routes: Variant = market.get("routes", [])
+	if typeof(routes) != TYPE_ARRAY:
+		e.append("routes 는 배열")
+	else:
+		for route: Variant in routes:
+			if typeof(route) != TYPE_DICTIONARY:
+				e.append("routes 항목은 객체")
+				continue
+			if not market_ids.has(route.get("to")):
+				e.append("routes: 없는 장터 %s" % str(route.get("to")))
+			if route.get("to") == market.get("id"):
+				e.append("routes: 자기 자신으로 가는 길")
+			if not road_ids.has(route.get("road")):
+				e.append("routes: 없는 길 %s" % str(route.get("road")))
+	return e
+
+
+static func validate_economy(d: Variant) -> Array[String]:
+	var e: Array[String] = []
+	if not _check_common(d, "economy_", e):
+		return e
+	var eco: Dictionary = d
+	for key: String in ["starting_money", "default_sell_multiplier", "min_condition_factor", "default_stock"]:
+		_require_number(eco, key, e)
+	if e.size() > 0:
+		return e
+	if int(eco["starting_money"]) < 0:
+		e.append("starting_money 는 0 이상")
+	if float(eco["default_sell_multiplier"]) <= 0.0:
+		e.append("default_sell_multiplier 는 양수")
+	if float(eco["min_condition_factor"]) < 0.0 or float(eco["min_condition_factor"]) > 1.0:
+		e.append("min_condition_factor 범위 0~1")
+	if int(eco["default_stock"]) < 1:
+		e.append("default_stock 은 1 이상")
 	return e
 
 

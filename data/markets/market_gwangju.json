@@ -1,0 +1,27 @@
+{
+	"id": "market_gwangju",
+	"name_ko": "광주장",
+	"name_en": "Gwangju Market",
+	"market_days": [1, 6],
+	"sells": {
+		"item_white_porcelain": 0.6,
+		"item_onggi": 0.8,
+		"item_firewood": 0.9,
+		"item_salt_sack": 1.1,
+		"item_rice_bale": 1.0,
+		"item_watermelon": 0.9
+	},
+	"stock": {
+		"item_white_porcelain": 3,
+		"item_onggi": 2,
+		"item_firewood": 2,
+		"item_watermelon": 2
+	},
+	"buys": {
+		"item_brass_bowl": 1.2,
+		"item_ginseng": 1.1,
+		"item_silk_roll": 1.1
+	},
+	"routes": [{ "to": "market_anseong", "road": "road_gwangju_anseong" }],
+	"note_ko": "경기 광주는 관요(백자) 고장이라 백자가 싸다. 실제 장날과 품목은 분위기 참고 수준."
+}

@@ -85,3 +85,52 @@ func test_not_object_fails() -> void:
 func test_road_unknown_segment_fails() -> void:
 	var road: Dictionary = { "id": "road_x", "name_ko": "길", "name_en": "Road", "segments": ["flat", "lava"] }
 	assert_gt(DataValidator.validate_road(road, ["flat"]).size(), 0)
+
+
+func _valid_market() -> Dictionary:
+	return {
+		"id": "market_x", "name_ko": "장", "name_en": "Market", "market_days": [2, 7],
+		"sells": { "item_white_porcelain": 0.6 }, "stock": { "item_white_porcelain": 2 },
+		"buys": { "item_onggi": 1.2 }, "routes": [{ "to": "market_y", "road": "road_a" }],
+	}
+
+
+func _validate_market(market: Dictionary) -> Array[String]:
+	return DataValidator.validate_market(market, ["item_white_porcelain", "item_onggi"], ["road_a"],
+		["market_x", "market_y"])
+
+
+func test_valid_market_passes() -> void:
+	assert_eq(_validate_market(_valid_market()), [] as Array[String])
+
+
+func test_market_unknown_item_fails() -> void:
+	var m: Dictionary = _valid_market()
+	m["buys"] = { "item_dragon_egg": 2.0 }
+	assert_gt(_validate_market(m).size(), 0)
+
+
+func test_market_stock_not_sold_fails() -> void:
+	var m: Dictionary = _valid_market()
+	m["stock"] = { "item_onggi": 1 }
+	assert_gt(_validate_market(m).size(), 0)
+
+
+func test_market_bad_route_fails() -> void:
+	var m: Dictionary = _valid_market()
+	m["routes"] = [{ "to": "market_x", "road": "road_nope" }]
+	assert_eq(_validate_market(m).size(), 2, "자기 자신으로 가는 길, 없는 길")
+
+
+func test_market_bad_day_fails() -> void:
+	var m: Dictionary = _valid_market()
+	m["market_days"] = [0, 11]
+	assert_eq(_validate_market(m).size(), 2)
+
+
+func test_every_market_has_route_and_stall() -> void:
+	var markets: Dictionary = JsonData.load_by_id("res://data/markets")
+	assert_gte(markets.size(), 2)
+	for market: Dictionary in markets.values():
+		assert_gt((market["routes"] as Array).size(), 0, "%s: 갈 길이 있음" % market["id"])
+		assert_gt((market["sells"] as Dictionary).size(), 0, "%s: 파는 상품이 있음" % market["id"])

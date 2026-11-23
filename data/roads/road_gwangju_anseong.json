@@ -1,0 +1,9 @@
+{
+	"id": "road_gwangju_anseong",
+	"name_ko": "광주에서 안성 가는 길",
+	"name_en": "Gwangju to Anseong Road",
+	"seed": 21,
+	"time_cost": 1,
+	"segments": ["flat", "rocks", "uphill", "pothole", "flat", "downhill", "rocks", "pothole", "flat"],
+	"note_ko": "M2 시험 구간. 약 88m, 기본 걸음으로 70초 안팎."
+}
