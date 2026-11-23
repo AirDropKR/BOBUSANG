@@ -16,7 +16,7 @@ const DAMAGE_TINT_MAX: float = 0.6
 const ROLL_MARK_COLOR: Color = Color(0.1, 0.1, 0.1, 1.0)
 const ROLL_MARK_THICKNESS: float = 0.025
 const ROLL_MARK_DOT_RATIO: float = 0.22
-const INFO_LABEL_OFFSET: float = 0.35
+const INFO_LABEL_OFFSET: float = 0.15
 const INFO_FONT_SIZE: int = 28
 const INFO_PIXEL_SIZE: float = 0.005
 
@@ -40,6 +40,8 @@ var _prev_linear_velocity: Vector3 = Vector3.ZERO
 var _prev_angular_velocity: Vector3 = Vector3.ZERO
 var _prev_contacts: Dictionary = {}
 var _info_label: Label3D
+var _tag_text: String = ""
+var _show_info: bool = false
 
 
 func setup(p_definition: Dictionary, p_uid: int) -> void:
@@ -114,7 +116,19 @@ func half_extents_2d() -> Vector2:
 
 ## 정보 표시 (내구도 %) 켜고 끄기
 func set_info_visible(show_info: bool) -> void:
-	if show_info and _info_label == null:
+	_show_info = show_info
+	_update_label_visibility()
+
+
+## 물건 위에 띄우는 글 (예: 좌판 가격). 빈 글이면 숨김
+func set_tag(text: String) -> void:
+	_tag_text = text
+	_update_label_visibility()
+
+
+func _update_label_visibility() -> void:
+	var needed: bool = _show_info or not _tag_text.is_empty()
+	if needed and _info_label == null:
 		_info_label = Label3D.new()
 		_info_label.font_size = INFO_FONT_SIZE
 		_info_label.pixel_size = INFO_PIXEL_SIZE
@@ -125,15 +139,22 @@ func set_info_visible(show_info: bool) -> void:
 		_info_label.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 		add_child(_info_label)
 	if _info_label:
-		_info_label.visible = show_info
+		_info_label.visible = needed
 
 
 func _process(delta: float) -> void:
 	_age += delta
-	if _info_label and _info_label.visible:
+	if _info_label == null or not _info_label.visible:
+		return
+	var lines: PackedStringArray = PackedStringArray()
+	if not _tag_text.is_empty():
+		lines.append(_tag_text)
+	if _show_info:
 		var pct: int = roundi(Breakage.durability_ratio(durability, max_durability) * 100.0)
-		_info_label.text = "%s %d%%  m%.1f\n%.1f" % [Loc.name_of(definition), pct, mass, last_impact]
-		_info_label.global_position = get_global_transform_interpolated().origin + Vector3.UP * INFO_LABEL_OFFSET
+		lines.append("%s %d%%  m%.1f  (%.1f)" % [Loc.name_of(definition), pct, mass, last_impact])
+	_info_label.text = "\n".join(lines)
+	var top: float = half_extents_2d().y
+	_info_label.global_position = get_global_transform_interpolated().origin + Vector3.UP * (top + INFO_LABEL_OFFSET)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:

@@ -14,6 +14,8 @@ const FOLLOW_SHARPNESS_Y: float = 2.5
 var target: Node3D
 ## 따라갈 점을 직접 정할 때 (출발 전 선반 보기)
 var fixed_focus: Variant = null
+## 0보다 크면 이 너비(m)가 화면에 다 들어오도록 카메라를 뒤로 뺀다 (출발 전 좌판 보기)
+var min_view_width: float = 0.0
 var _focus: Vector3 = Vector3.ZERO
 var _initialized: bool = false
 
@@ -55,6 +57,16 @@ func _desired_focus() -> Vector3:
 
 func _place() -> void:
 	var dist: float = Tuning.v("camera_distance")
+	if fixed_focus != null and min_view_width > 0.0:
+		dist = maxf(dist, _distance_for_width(min_view_width))
 	var look_at_point: Vector3 = _focus
 	global_position = look_at_point + Vector3(dist * YAW_SHIFT_RATIO, HEIGHT_OFFSET, dist)
 	look_at(look_at_point, Vector3.UP)
+
+
+## 가로 너비 width(m)가 화면에 들어오는 카메라 거리
+func _distance_for_width(width: float) -> float:
+	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	var aspect: float = viewport_size.x / maxf(viewport_size.y, 1.0)
+	var half_h_fov: float = atan(tan(deg_to_rad(fov) * 0.5) * aspect)
+	return width * 0.5 / tan(half_h_fov)
