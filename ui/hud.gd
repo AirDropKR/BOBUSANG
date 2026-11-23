@@ -15,6 +15,7 @@ const TOAST_COLOR: Color = Color(1.0, 0.86, 0.4)
 
 var _hint: Label
 var _info: Label
+var _trade: Label
 var _debug_hint: Label
 var _start_button: Button
 var _toast_box: VBoxContainer
@@ -42,6 +43,15 @@ func _ready() -> void:
 	_info.offset_bottom = -MARGIN
 	_info.grow_vertical = Control.GROW_DIRECTION_BEGIN
 	root.add_child(_info)
+
+	_trade = _label(FONT_SIZE_INFO)
+	_trade.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
+	_trade.offset_left = MARGIN
+	_trade.offset_top = -120
+	_trade.offset_bottom = -56
+	_trade.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	_trade.visible = false
+	root.add_child(_trade)
 
 	_debug_hint = _label(16)
 	_debug_hint.text = tr("ui.debug_hint")
@@ -74,9 +84,25 @@ func _ready() -> void:
 	show_stacking()
 
 
-func show_stacking() -> void:
-	_hint.text = tr("ui.hint_stack")
+## hint_text 가 비어 있으면 기본 쌓기 안내
+func show_stacking(hint_text: String = "") -> void:
+	_hint.text = hint_text if not hint_text.is_empty() else tr("ui.hint_stack")
 	_start_button.visible = true
+
+
+func set_start_enabled(enabled: bool) -> void:
+	_start_button.disabled = not enabled
+
+
+## 가진 돈과 지게 위 상품 값. shortage > 0 이면 모자란 돈을 함께 보여준다
+func set_trade(money: int, cart_total: int, shortage: int) -> void:
+	_trade.visible = true
+	var text: String = Loc.format("ui.money", { "n": money })
+	if cart_total >= 0:
+		text += "    " + Loc.format("ui.cart_total", { "n": cart_total })
+	if shortage > 0:
+		text += "    " + Loc.format("ui.not_enough", { "n": shortage })
+	_trade.text = text
 
 
 func show_walking() -> void:

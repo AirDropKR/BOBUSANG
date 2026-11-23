@@ -40,6 +40,26 @@
 		"debug.group.item": "상품별 질량 배율",
 		"debug.segments_help": "flat, rocks, pothole, uphill, downhill",
 		"debug.show_info": "물리 정보 표시",
-		"item.label_durability": "{name} {pct}%"
+		"item.label_durability": "{name} {pct}%",
+		"ui.money": "가진 돈 {n}냥",
+		"ui.cart_total": "지게 위 값 {n}냥",
+		"ui.price_tag": "{n}냥",
+		"ui.not_enough": "돈이 모자랍니다 ({n}냥 부족)",
+		"ui.hint_market": "{market}: 좌판의 상품을 지게에 올리면, 출발할 때 지게 위 상품 값을 치릅니다.  끌기: 마우스 왼쪽 | 회전: Q / E",
+		"ui.leg_title": "{from} → {to}",
+		"ui.arrived_at": "{market} 도착",
+		"ui.sell": "팔기",
+		"ui.sell_all": "모두 팔기",
+		"ui.sold": "팔림",
+		"ui.sell_title": "{market}에서 팔기",
+		"ui.condition": "상태 {pct}%",
+		"ui.spent": "산 값",
+		"ui.earned": "판 값",
+		"ui.profit": "손익",
+		"ui.lost_value": "잃은 값",
+		"ui.kept": "남은 짐",
+		"ui.paid_toast": "{n}냥을 치르고 출발",
+		"ui.untracked_broke": "좌판의 {item}이(가) 깨졌다 (값은 안 냄)",
+		"ui.money_unit": "{n}냥"
 	}
 }

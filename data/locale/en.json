@@ -40,6 +40,26 @@
 		"debug.group.item": "Per-item mass scale",
 		"debug.segments_help": "flat, rocks, pothole, uphill, downhill",
 		"debug.show_info": "Show physics info",
-		"item.label_durability": "{name} {pct}%"
+		"item.label_durability": "{name} {pct}%",
+		"ui.money": "Money {n} nyang",
+		"ui.cart_total": "On jige: {n} nyang",
+		"ui.price_tag": "{n} nyang",
+		"ui.not_enough": "Not enough money ({n} nyang short)",
+		"ui.hint_market": "{market}: Put goods from the stall on your jige. You pay for what's on it when you depart.  Drag: Left Mouse | Rotate: Q / E",
+		"ui.leg_title": "{from} → {to}",
+		"ui.arrived_at": "Arrived at {market}",
+		"ui.sell": "Sell",
+		"ui.sell_all": "Sell All",
+		"ui.sold": "Sold",
+		"ui.sell_title": "Selling at {market}",
+		"ui.condition": "Condition {pct}%",
+		"ui.spent": "Spent",
+		"ui.earned": "Earned",
+		"ui.profit": "Profit",
+		"ui.lost_value": "Value lost",
+		"ui.kept": "Unsold",
+		"ui.paid_toast": "Paid {n} nyang and set off",
+		"ui.untracked_broke": "The {item} on the stall broke (no charge)",
+		"ui.money_unit": "{n} nyang"
 	}
 }

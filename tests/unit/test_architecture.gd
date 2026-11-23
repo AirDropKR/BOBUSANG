@@ -3,7 +3,7 @@ extends GutTest
 ## - 입력 동작이 장치와 분리되어 있음: input/ 밖의 게임 코드는 Input, InputEvent 를 직접 읽지 않음
 ## - core/ 는 Node, 물리, 입력, 렌더링 API 를 쓰지 않음
 
-const GAME_CODE_DIRS: Array[String] = ["res://core", "res://physics", "res://view", "res://ui", "res://debug"]
+const GAME_CODE_DIRS: Array[String] = ["res://core", "res://physics", "res://view", "res://ui", "res://debug", "res://game"]
 const INPUT_PATTERN: String = "\\bInput\\.|\\bInputEvent|func _input\\(|func _unhandled_input\\(|func _unhandled_key_input\\(|func _shortcut_input\\(|\\bInputMap\\."
 const CORE_FORBIDDEN_PATTERN: String = "extends\\s+(Node|Node2D|Node3D|Control|CanvasItem|RigidBody3D|StaticBody3D|Area3D)\\b|PhysicsServer|RenderingServer|DisplayServer|\\bInput\\b|get_tree\\(|RigidBody|Camera3D|Viewport"
 
@@ -84,7 +84,7 @@ func test_no_hardcoded_korean_ui_text_in_ui_code() -> void:
 	var regex: RegEx = RegEx.create_from_string("\"[^\"]*[가-힣][^\"]*\"")
 	var log_regex: RegEx = RegEx.create_from_string("push_error|push_warning|printerr|print\\(")
 	var hits: Array[String] = []
-	for dir_path: String in ["res://ui", "res://debug", "res://view"]:
+	for dir_path: String in ["res://ui", "res://debug", "res://view", "res://game"]:
 		for path: String in _scripts_in(dir_path):
 			for hit: String in _find(path, regex):
 				if log_regex.search(hit) == null:

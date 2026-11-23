@@ -4,6 +4,8 @@ extends CanvasLayer
 
 signal retry_pressed
 
+const PANEL_COLOR: Color = Color(0.13, 0.11, 0.09, 0.97)
+const PANEL_CORNER_RADIUS: int = 8
 const PANEL_SIZE: Vector2 = Vector2(720, 520)
 const TITLE_FONT: int = 40
 const HEADER_FONT: int = 26
@@ -28,6 +30,10 @@ func show_result(summary: Dictionary, item_defs: Dictionary) -> void:
 	panel.offset_right = PANEL_SIZE.x * 0.5
 	panel.offset_top = -PANEL_SIZE.y * 0.5
 	panel.offset_bottom = PANEL_SIZE.y * 0.5
+	var style: StyleBoxFlat = StyleBoxFlat.new()
+	style.bg_color = PANEL_COLOR
+	style.set_corner_radius_all(PANEL_CORNER_RADIUS)
+	panel.add_theme_stylebox_override("panel", style)
 	add_child(panel)
 	var margin: MarginContainer = MarginContainer.new()
 	for side: String in ["left", "right", "top", "bottom"]:

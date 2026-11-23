@@ -22,7 +22,8 @@ input/       입력 동작 정의와 PC, 터치, 자이로 연결
 view/        카메라, 연출, 효과
 ui/          UI
 data/        items/, carriers/, tools/, markets/, roads/, events/, quests/, locale/
-debug/       조정 패널, 테스트 씬
+game/        게임 흐름 씬: core 규칙, physics 세계, ui 를 묶는다 (M2 한 구간 씬)
+debug/       조정 패널, 테스트 씬 (M1 물리 샌드박스는 손맛 확인용으로 계속 유지)
 tools/       데이터 검증, 테스트 러너
 tests/
 ```
@@ -65,4 +66,4 @@ tests/
 - `core/`에서 `Node`, 물리, 입력, 렌더링 API 사용 금지
 
 ## 현재 단계
-M1 (물리 샌드박스) 구현 완료, 손맛 직접 확인 대기
+M2 (한 구간: 사서 쌓기 -> 이동 -> 팔기) 구현 완료. M1 손맛 직접 확인은 운영자가 나중에 진행 (M1 샌드박스 유지)
