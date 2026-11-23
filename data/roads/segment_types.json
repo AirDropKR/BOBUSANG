@@ -1,0 +1,49 @@
+[
+	{
+		"id": "flat",
+		"name_ko": "평지",
+		"name_en": "Flat",
+		"length": 10.0,
+		"params": {}
+	},
+	{
+		"id": "rocks",
+		"name_ko": "돌길",
+		"name_en": "Rocky Path",
+		"length": 12.0,
+		"params": {
+			"bump_height": 0.035,
+			"bump_spacing": 0.45,
+			"bump_jitter": 0.4
+		}
+	},
+	{
+		"id": "pothole",
+		"name_ko": "구덩이",
+		"name_en": "Pothole",
+		"length": 5.0,
+		"params": {
+			"depth": 0.22,
+			"width": 1.1,
+			"edge": 0.15
+		}
+	},
+	{
+		"id": "uphill",
+		"name_ko": "오르막",
+		"name_en": "Uphill",
+		"length": 12.0,
+		"params": {
+			"rise": 2.0
+		}
+	},
+	{
+		"id": "downhill",
+		"name_ko": "내리막",
+		"name_en": "Downhill",
+		"length": 12.0,
+		"params": {
+			"rise": -2.0
+		}
+	}
+]

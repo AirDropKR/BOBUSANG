@@ -1,0 +1,7 @@
+{
+	"id": "road_m1_pass",
+	"name_ko": "시험길: 고개",
+	"name_en": "Test Road: Mountain Pass",
+	"seed": 11,
+	"segments": ["flat", { "type": "uphill", "length": 14, "rise": 3.0 }, "pothole", { "type": "downhill", "length": 10, "rise": -3.0 }, "pothole", "flat"]
+}

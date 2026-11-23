@@ -1,0 +1,7 @@
+{
+	"id": "road_m1_rocks",
+	"name_ko": "시험길: 돌길만",
+	"name_en": "Test Road: Rocks Only",
+	"seed": 3,
+	"segments": ["flat", "rocks", "rocks", { "type": "rocks", "length": 16, "bump_height": 0.1 }, "flat"]
+}

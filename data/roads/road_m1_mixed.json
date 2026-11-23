@@ -1,0 +1,7 @@
+{
+	"id": "road_m1_mixed",
+	"name_ko": "시험길: 섞음",
+	"name_en": "Test Road: Mixed",
+	"seed": 7,
+	"segments": ["flat", "rocks", "flat", "pothole", "uphill", "rocks", "downhill", "pothole", "flat"]
+}

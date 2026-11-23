@@ -1,0 +1,26 @@
+{
+	"id": "item_brass_bowl",
+	"name_ko": "놋그릇",
+	"name_en": "Brass Bowls",
+	"base_price": 60,
+	"mass": 4.0,
+	"collider": {
+		"shape": "cylinder",
+		"radius": 0.17,
+		"height": 0.14,
+		"axis": "y"
+	},
+	"friction": 0.15,
+	"bounce": 0.08,
+	"durability": 100,
+	"damage_threshold": 99.0,
+	"break_impulse": 999.0,
+	"unbreakable": true,
+	"tags": [
+		"metal",
+		"heavy"
+	],
+	"special": null,
+	"color": "#c9a227",
+	"note_ko": "포갠 놋그릇 한 벌. 안 깨지지만 미끄럽다."
+}

@@ -1,0 +1,28 @@
+{
+	"id": "item_ginseng",
+	"name_ko": "인삼",
+	"name_en": "Ginseng",
+	"base_price": 150,
+	"mass": 0.3,
+	"collider": {
+		"shape": "box",
+		"size": [
+			0.24,
+			0.08,
+			0.14
+		]
+	},
+	"friction": 0.7,
+	"bounce": 0.1,
+	"durability": 15,
+	"damage_threshold": 0.6,
+	"break_impulse": 3.0,
+	"unbreakable": false,
+	"tags": [
+		"light",
+		"luxury"
+	],
+	"special": null,
+	"color": "#e0c27a",
+	"note_ko": "작고 가벼운 인삼 상자. 작은 물건이 튀어 날아가지 않는지 확인하는 용도."
+}

@@ -1,0 +1,27 @@
+{
+	"id": "item_silk_roll",
+	"name_ko": "비단 두루마리",
+	"name_en": "Silk Roll",
+	"base_price": 140,
+	"mass": 1.5,
+	"collider": {
+		"shape": "cylinder",
+		"radius": 0.08,
+		"height": 0.45,
+		"axis": "z"
+	},
+	"friction": 0.5,
+	"bounce": 0.05,
+	"durability": 100,
+	"damage_threshold": 99.0,
+	"break_impulse": 999.0,
+	"unbreakable": true,
+	"tags": [
+		"light",
+		"luxury",
+		"rolling"
+	],
+	"special": null,
+	"color": "#b8405a",
+	"note_ko": "깨지지는 않지만 둥글어서 잘 굴러 떨어진다."
+}

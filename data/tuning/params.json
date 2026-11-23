@@ -1,0 +1,295 @@
+{
+	"note_ko": "조정 패널 항목 정의. group 이 item 인 항목은 상품마다 하나씩 만들어진다 (키: mass_scale.<상품 id>).",
+	"params": [
+		{
+			"key": "gravity",
+			"group": "world",
+			"name_ko": "중력 (m/s²)",
+			"name_en": "Gravity",
+			"default": 12.0,
+			"min": 3.0,
+			"max": 30.0,
+			"step": 0.1
+		},
+		{
+			"key": "linear_damp",
+			"group": "world",
+			"name_ko": "선형 감쇠",
+			"name_en": "Linear Damping",
+			"default": 0.1,
+			"min": 0.0,
+			"max": 5.0,
+			"step": 0.01
+		},
+		{
+			"key": "angular_damp",
+			"group": "world",
+			"name_ko": "회전 감쇠",
+			"name_en": "Angular Damping",
+			"default": 0.8,
+			"min": 0.0,
+			"max": 10.0,
+			"step": 0.05
+		},
+		{
+			"key": "friction_scale",
+			"group": "world",
+			"name_ko": "마찰 배율",
+			"name_en": "Friction Scale",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 3.0,
+			"step": 0.05
+		},
+		{
+			"key": "bounce_scale",
+			"group": "world",
+			"name_ko": "튕김 배율",
+			"name_en": "Bounce Scale",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 4.0,
+			"step": 0.05
+		},
+		{
+			"key": "max_linear_speed",
+			"group": "world",
+			"name_ko": "최대 속도 (m/s)",
+			"name_en": "Max Linear Speed",
+			"default": 12.0,
+			"min": 2.0,
+			"max": 40.0,
+			"step": 0.5
+		},
+		{
+			"key": "max_angular_speed",
+			"group": "world",
+			"name_ko": "최대 회전 속도 (rad/s)",
+			"name_en": "Max Angular Speed",
+			"default": 14.0,
+			"min": 2.0,
+			"max": 60.0,
+			"step": 0.5
+		},
+		{
+			"key": "damage_scale",
+			"group": "world",
+			"name_ko": "파손 배율",
+			"name_en": "Damage Scale",
+			"default": 10.0,
+			"min": 0.0,
+			"max": 50.0,
+			"step": 0.5
+		},
+		{
+			"key": "hand_spring",
+			"group": "hand",
+			"name_ko": "손 스프링 세기 (N/m)",
+			"name_en": "Hand Spring",
+			"default": 500.0,
+			"min": 20.0,
+			"max": 4000.0,
+			"step": 10.0
+		},
+		{
+			"key": "hand_damping",
+			"group": "hand",
+			"name_ko": "손 감쇠 (임계 감쇠 비)",
+			"name_en": "Hand Damping Ratio",
+			"default": 0.9,
+			"min": 0.05,
+			"max": 3.0,
+			"step": 0.05
+		},
+		{
+			"key": "hand_max_force",
+			"group": "hand",
+			"name_ko": "손 최대 힘 (N)",
+			"name_en": "Hand Max Force",
+			"default": 260.0,
+			"min": 10.0,
+			"max": 1500.0,
+			"step": 5.0
+		},
+		{
+			"key": "hand_gravity_comp",
+			"group": "hand",
+			"name_ko": "손 무게 받쳐주기 비율",
+			"name_en": "Hand Gravity Compensation",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 1.0,
+			"step": 0.05
+		},
+		{
+			"key": "hand_drag_lift_ratio",
+			"group": "hand",
+			"name_ko": "못 드는 물건 받쳐주기 비율",
+			"name_en": "Drag Lift Ratio",
+			"default": 0.5,
+			"min": 0.0,
+			"max": 0.95,
+			"step": 0.05
+		},
+		{
+			"key": "hand_rotate_freq",
+			"group": "hand",
+			"name_ko": "잡은 물건 각도 유지 세기",
+			"name_en": "Held Angle Stiffness",
+			"default": 8.0,
+			"min": 0.0,
+			"max": 30.0,
+			"step": 0.5
+		},
+		{
+			"key": "hand_rotate_speed",
+			"group": "hand",
+			"name_ko": "Q/E 회전 속도 (도/초)",
+			"name_en": "Q/E Rotate Speed (deg/s)",
+			"default": 150.0,
+			"min": 10.0,
+			"max": 720.0,
+			"step": 5.0
+		},
+		{
+			"key": "lean_max_angle",
+			"group": "porter",
+			"name_ko": "기울이기 최대 각도 (도)",
+			"name_en": "Lean Max Angle (deg)",
+			"default": 16.0,
+			"min": 0.0,
+			"max": 45.0,
+			"step": 0.5
+		},
+		{
+			"key": "lean_speed",
+			"group": "porter",
+			"name_ko": "기울이기 속도 (도/초)",
+			"name_en": "Lean Speed (deg/s)",
+			"default": 50.0,
+			"min": 5.0,
+			"max": 300.0,
+			"step": 1.0
+		},
+		{
+			"key": "walk_speed",
+			"group": "porter",
+			"name_ko": "걷는 속도 (m/s)",
+			"name_en": "Walk Speed",
+			"default": 1.3,
+			"min": 0.2,
+			"max": 4.0,
+			"step": 0.05
+		},
+		{
+			"key": "walk_accel",
+			"group": "porter",
+			"name_ko": "걸음 가속 (m/s²)",
+			"name_en": "Walk Acceleration",
+			"default": 1.2,
+			"min": 0.1,
+			"max": 10.0,
+			"step": 0.1
+		},
+		{
+			"key": "slow_ratio",
+			"group": "porter",
+			"name_ko": "걸음 늦추기 비율",
+			"name_en": "Slow Walk Ratio",
+			"default": 0.35,
+			"min": 0.05,
+			"max": 1.0,
+			"step": 0.05
+		},
+		{
+			"key": "slope_follow",
+			"group": "porter",
+			"name_ko": "경사 따라 기울기",
+			"name_en": "Slope Follow",
+			"default": 0.5,
+			"min": 0.0,
+			"max": 1.0,
+			"step": 0.05
+		},
+		{
+			"key": "step_bob",
+			"group": "porter",
+			"name_ko": "걸음 출렁임 (m)",
+			"name_en": "Step Bob",
+			"default": 0.02,
+			"min": 0.0,
+			"max": 0.1,
+			"step": 0.005
+		},
+		{
+			"key": "step_length",
+			"group": "porter",
+			"name_ko": "보폭 (m)",
+			"name_en": "Step Length",
+			"default": 0.7,
+			"min": 0.2,
+			"max": 1.5,
+			"step": 0.05
+		},
+		{
+			"key": "road_bump_scale",
+			"group": "road",
+			"name_ko": "길 요철 세기",
+			"name_en": "Road Bump Scale",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 3.0,
+			"step": 0.05
+		},
+		{
+			"key": "suspension_freq",
+			"group": "road",
+			"name_ko": "몸 충격 흡수 단단함 (rad/s)",
+			"name_en": "Body Suspension Stiffness",
+			"default": 16.0,
+			"min": 4.0,
+			"max": 80.0,
+			"step": 1.0
+		},
+		{
+			"key": "suspension_damping",
+			"group": "road",
+			"name_ko": "몸 충격 흡수 감쇠",
+			"name_en": "Body Suspension Damping",
+			"default": 0.45,
+			"min": 0.05,
+			"max": 2.0,
+			"step": 0.05
+		},
+		{
+			"key": "camera_lookahead",
+			"group": "view",
+			"name_ko": "카메라 앞쪽 여유 (m)",
+			"name_en": "Camera Lookahead",
+			"default": 2.2,
+			"min": 0.0,
+			"max": 6.0,
+			"step": 0.1
+		},
+		{
+			"key": "camera_distance",
+			"group": "view",
+			"name_ko": "카메라 거리 (m)",
+			"name_en": "Camera Distance",
+			"default": 7.5,
+			"min": 3.0,
+			"max": 20.0,
+			"step": 0.1
+		},
+		{
+			"key": "mass_scale",
+			"group": "item",
+			"name_ko": "질량 배율",
+			"name_en": "Mass Scale",
+			"default": 1.0,
+			"min": 0.1,
+			"max": 5.0,
+			"step": 0.05
+		}
+	]
+}

@@ -1,0 +1,29 @@
+{
+	"id": "item_salt_sack",
+	"name_ko": "소금 가마니",
+	"name_en": "Salt Sack",
+	"base_price": 20,
+	"mass": 20.0,
+	"collider": {
+		"shape": "box",
+		"size": [
+			0.55,
+			0.32,
+			0.4
+		]
+	},
+	"friction": 0.9,
+	"bounce": 0.0,
+	"durability": 500,
+	"damage_threshold": 60.0,
+	"break_impulse": 400.0,
+	"unbreakable": false,
+	"tags": [
+		"heavy",
+		"sturdy",
+		"bulk"
+	],
+	"special": null,
+	"color": "#d9d2bf",
+	"note_ko": "짚 가마니. 실제보다 가볍게 잡았다. 바닥에 깔기 좋은 무겁고 튼튼한 짐."
+}

@@ -1,0 +1,27 @@
+{
+	"id": "item_white_porcelain",
+	"name_ko": "백자",
+	"name_en": "White Porcelain",
+	"base_price": 120,
+	"mass": 1.2,
+	"collider": {
+		"shape": "cylinder",
+		"radius": 0.18,
+		"height": 0.4,
+		"axis": "y"
+	},
+	"friction": 0.4,
+	"bounce": 0.05,
+	"durability": 30,
+	"damage_threshold": 1.2,
+	"break_impulse": 4.0,
+	"unbreakable": false,
+	"tags": [
+		"fragile",
+		"ceramic",
+		"luxury"
+	],
+	"special": null,
+	"color": "#f2f0ea",
+	"note_ko": "DESIGN.md 데이터 예시 그대로. 지게 높이에서 떨어지면 대개 깨진다."
+}

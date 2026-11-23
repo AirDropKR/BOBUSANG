@@ -1,0 +1,26 @@
+{
+	"id": "item_onggi",
+	"name_ko": "옹기",
+	"name_en": "Onggi Jar",
+	"base_price": 40,
+	"mass": 6.0,
+	"collider": {
+		"shape": "cylinder",
+		"radius": 0.2,
+		"height": 0.42,
+		"axis": "y"
+	},
+	"friction": 0.6,
+	"bounce": 0.03,
+	"durability": 200,
+	"damage_threshold": 4.0,
+	"break_impulse": 24.0,
+	"unbreakable": false,
+	"tags": [
+		"fragile",
+		"ceramic"
+	],
+	"special": null,
+	"color": "#6b4a35",
+	"note_ko": "세워 놓은 항아리. 백자보다 무겁고 덜 깨진다."
+}

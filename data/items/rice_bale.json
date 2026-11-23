@@ -1,0 +1,27 @@
+{
+	"id": "item_rice_bale",
+	"name_ko": "쌀섬",
+	"name_en": "Rice Bale",
+	"base_price": 30,
+	"mass": 30.0,
+	"collider": {
+		"shape": "capsule",
+		"radius": 0.2,
+		"height": 0.75,
+		"axis": "x"
+	},
+	"friction": 0.85,
+	"bounce": 0.0,
+	"durability": 500,
+	"damage_threshold": 80.0,
+	"break_impulse": 500.0,
+	"unbreakable": false,
+	"tags": [
+		"heavy",
+		"sturdy",
+		"bulk"
+	],
+	"special": null,
+	"color": "#c9a95e",
+	"note_ko": "기본 손 힘으로는 들 수 없고 끌기만 되도록 가장 무겁게 잡았다 (손 힘 규칙 확인용)."
+}

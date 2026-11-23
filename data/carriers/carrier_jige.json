@@ -1,0 +1,20 @@
+{
+	"id": "carrier_jige",
+	"name_ko": "지게",
+	"name_en": "Jige (A-frame Carrier)",
+	"shelf_width": 0.78,
+	"shelf_thickness": 0.06,
+	"shelf_depth": 0.5,
+	"shelf_height": 0.72,
+	"offset_x": -0.5,
+	"frame_height": 0.6,
+	"rim_height": 0.08,
+	"rim_thickness": 0.04,
+	"pivot_height": 1.0,
+	"load_zone_height": 2.6,
+	"load_zone_margin": 0.15,
+	"friction": 0.8,
+	"bounce": 0.0,
+	"color": "#9c7448",
+	"note_ko": "옆모습 기준: 주인공 쪽에 등태(높은 테두리), 바깥쪽에 낮은 테두리. 실제 지게의 가지 대신 받침대로 단순화."
+}

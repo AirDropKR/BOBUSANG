@@ -1,0 +1,27 @@
+{
+	"id": "item_rice_wine_jar",
+	"name_ko": "술독",
+	"name_en": "Rice Wine Jar",
+	"base_price": 50,
+	"mass": 10.0,
+	"collider": {
+		"shape": "cylinder",
+		"radius": 0.2,
+		"height": 0.36,
+		"axis": "z"
+	},
+	"friction": 0.55,
+	"bounce": 0.03,
+	"durability": 300,
+	"damage_threshold": 7.0,
+	"break_impulse": 40.0,
+	"unbreakable": false,
+	"tags": [
+		"rolling",
+		"fragile",
+		"ceramic"
+	],
+	"special": null,
+	"color": "#7a5236",
+	"note_ko": "눕혀 실은 술독. 옆에서 보면 원이라 굴러간다 (단순화)."
+}

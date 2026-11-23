@@ -1,0 +1,24 @@
+{
+	"id": "item_watermelon",
+	"name_ko": "수박",
+	"name_en": "Watermelon",
+	"base_price": 25,
+	"mass": 6.0,
+	"collider": {
+		"shape": "sphere",
+		"radius": 0.16
+	},
+	"friction": 0.5,
+	"bounce": 0.12,
+	"durability": 220,
+	"damage_threshold": 6.0,
+	"break_impulse": 32.0,
+	"unbreakable": false,
+	"tags": [
+		"rolling",
+		"fragile"
+	],
+	"special": null,
+	"color": "#2f6b2f",
+	"note_ko": "공 모양이라 칸막이 없으면 굴러 떨어진다."
+}
